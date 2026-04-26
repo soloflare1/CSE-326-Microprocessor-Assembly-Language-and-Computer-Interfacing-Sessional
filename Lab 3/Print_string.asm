@@ -2,7 +2,7 @@
 .STACK 100H
 
 .DATA
-msg DB 'Hello World$'
+myName DB 'Nosratee Jahan Naba$'
 
 .CODE
 MAIN PROC
@@ -10,7 +10,7 @@ MAIN PROC
 MOV AX, @DATA
 MOV DS, AX
 
-LEA DX, msg
+LEA DX, myName
 MOV AH, 09H
 INT 21H
 
