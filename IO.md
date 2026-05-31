@@ -48,22 +48,23 @@ SS → STACK SEGMENT (max 64KB)
 | `END MAIN`    | Ends program execution         |
 
 ---
-
 ## Flow
 
-| Step | Action                   |
-| ---- | ------------------------ |
-| 1    | Program starts           |
-| 2    | Character input is taken |
-| 3    | Stored in AL register    |
-| 4    | Moved to DL register     |
-| 5    | Character is displayed   |
-| 6    | Program exits            |
+| Step | Internal Change               |
+| ---- | ----------------------------- |
+| 1    | Program loads, CS:IP set      |
+| 2    | AH = 01H                      |
+| 3    | INT 21H → control goes to DOS |
+| 4    | Key pressed → AL = input      |
+| 5    | Return from interrupt         |
+| 6    | AH = 02H                      |
+| 7    | AL → DL copied                |
+| 8    | INT 21H → output displayed    |
+| 9    | AH = 4CH → program exit       |
 
 The program reads a single character using INT 21H (01H), displays it using INT 21H (02H), and then exits using INT 21H (4CH).
----
 
-## Important DOS Interrupt Functions
+##  DOS Interrupt Functions
 
 | AH Value | Function | Purpose                         |
 | -------- | -------- | ------------------------------- |
