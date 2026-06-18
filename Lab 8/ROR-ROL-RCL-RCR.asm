@@ -1,0 +1,55 @@
+# 1. Even / Odd
+MOV AL, [2000H]
+
+AND AL, 01H
+JZ EVEN
+
+MOV AX, 0022H
+JMP STORE
+
+EVEN:
+MOV AX, 0011H
+
+STORE:
+MOV [2001H], AX
+
+HLT
+
+
+# 2. ROL (Rotate Left)
+MOV AX, 124FH
+MOV CL, 03H
+
+ROL AX, CL
+
+HLT
+
+# 3. ROR (Rotate Right)
+MOV AX, 124FH
+MOV CL, 03H
+
+ROR AX, CL
+
+HLT
+
+
+# 4. RCL (Rotate through Carry Left)
+MOV AX, 1234H
+
+STC
+
+MOV CL, 01H
+
+RCL AX, CL
+HLT
+
+# 5. RCR (Rotate through Carry Right)
+MOV AX, 1234H
+
+STC
+
+MOV CL, 01H
+
+RCR AX, CL
+
+HLT
